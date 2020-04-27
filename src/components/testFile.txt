@@ -1,0 +1,297 @@
+import React, { Component } from "react";
+import ReactSearchBox from "react-search-box";
+import axios from "axios";
+
+class Audiences extends Component {
+  state = {
+    selectedAudiencList: [],
+    newData: [],
+    groupName: "",
+  };
+
+  componentDidMount() {
+    this.fetGroupData();
+  }
+
+  fetGroupData = () => {
+    let str = this.state.groupName.length > 0 ? this.state.groupName : "ninja";
+    console.log(str);
+
+    axios
+      .get(
+        "https://api.flickr.com/services/rest/?method=flickr.groups.search&api_key=90e78b3a04cf9f2321ecbeda297fc2b0&text=" +
+          str +
+          "&per_page=50&page=1&format=json&nojsoncallback=1"
+      )
+      .then((res) => {
+        console.log(res);
+        res.data.groups.group.map((grp) => {
+          return this.state.newData.push({
+            key: grp.nsid,
+            value: grp.name,
+            members: grp.members,
+            grpLink: "https://www.flickr.com/groups/" + grp.nsid + "/",
+            grpImg:
+              "https://farm" +
+              grp.iconfarm +
+              ".staticflickr.com/" +
+              grp.iconserver +
+              "/buddyicons/" +
+              grp.nsid +
+              ".jpg",
+          });
+        });
+      });
+  };
+
+  onClick = (e) => {
+    let temp = this.state.selectedAudiencList;
+    temp.push(e);
+    this.setState({
+      selectedAudiencList: temp,
+    });
+  };
+
+  removeClient = (key, value) => {
+    let clientID = this.state.selectedAudiencList.map((eachData) => {
+      return eachData;
+    });
+
+    clientID = clientID.filter((e) => e.key !== key && e.value !== value);
+    this.setState({
+      selectedAudiencList: clientID,
+    });
+  };
+
+  render() {
+    const { selectedAudiencList } = this.state;
+
+    return (
+      <React.Fragment>
+        <div className="target-card">
+          <TargetParent data={this.state.newData} onClick={this.onClick} />
+          {selectedAudiencList &&
+            selectedAudiencList.map(
+              ({ value, key, color, members, grpLink, grpImg }) => (
+                <Target
+                  key={key}
+                  value={value}
+                  color={color}
+                  members={members}
+                  grpLink={grpLink}
+                  grpImg={grpImg}
+                  removeClient={this.removeClient}
+                />
+              )
+            )}
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+export class Target extends Component {
+  state = {
+    isMouseInside: false,
+  };
+
+  mouseEnter = () => {
+    this.setState({ isMouseInside: true });
+  };
+  mouseLeave = () => {
+    this.setState({ isMouseInside: false });
+  };
+
+  render() {
+    const {
+      value,
+      color,
+      key,
+      removeClient,
+      members,
+      grpLink,
+      grpImg,
+    } = this.props;
+
+    const style = {
+      backgroundColor: color,
+    };
+
+    return (
+      <React.Fragment>
+        <div
+          className="list"
+          key={key}
+          onMouseEnter={this.mouseEnter}
+          onMouseLeave={this.mouseLeave}
+        >
+          <div className="category-color" style={style} />
+          <span>Title: {value}</span>
+          <span>Members: {members}</span>
+          <span>group link: {grpLink}</span>
+          <img src={grpImg} />
+          <span>
+            {this.state.isMouseInside ? (
+              <i
+                role="presentation"
+                className="fas fa-minus-circle"
+                style={{
+                  zIndex: "100",
+                  position: "absolute",
+                  marginTop: "-9px",
+                  marginRight: "10px",
+                  fontSize: "15px",
+                  color: "red",
+                }}
+                onClick={() => {
+                  removeClient(key, value);
+                }}
+              />
+            ) : null}
+          </span>
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+class TargetParent extends Component {
+  state = {
+    placeholder: "Search for groups",
+  };
+  render() {
+    const { onClick } = this.props;
+
+    return (
+      <React.Fragment>
+        <div>
+          <ReactSearchBox
+            placeholder={this.state.placeholder}
+            id="addInput"
+            data={this.props.data}
+            onSelect={(record) => onClick(record)}
+          />
+        </div>
+      </React.Fragment>
+    );
+  }
+}
+
+export default Audiences;
+
+
+import React, { Component } from "react";
+import axios from "axios";
+
+class Groups extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      value: "",
+      url: [],
+      main_photo: "",
+      chosen_photo: "",
+      slider_click: -3,
+      clicked_photo: 0,
+      showClass: false,
+    };
+    // this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      value: event.target.value,
+    });
+  }
+  handleSubmit(event) {
+    axios
+      .get(
+        "https://api.flickr.com/services/rest/?method=flickr.groups.search&api_key=0cfe5982584801c4b835e6231df36efb",
+        {
+          params: {
+            text: this.state.value,
+            tagmode: "any",
+            format: "json",
+            sort: "relevance",
+            nojsoncallback: 1,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data.groups.group);
+        // const url = [];
+        // const main_photo = [];
+        response.data.groups.group.map((grp) => {
+          const id = grp.nsid;
+          const server = grp.iconserver;
+          const farm = grp.iconfarm;
+          return this.state.url.push(
+            "https://farm" +
+              farm +
+              ".staticflickr.com/" +
+              server +
+              "/buddyicons/" +
+              id +
+              ".jpg",
+          );
+        });
+        this.setState({
+          url : this.state.url,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    event.preventDefault();
+  }
+
+  render() {
+    const showClass = this.state.showClass === true ? "showClass" : "notShow";
+    const urls = this.state.url.map((item, id) => (
+      <img
+        // onClick={() => this.handleClick(item, id)}
+        className={"photo_flickr "}
+        id={id}
+        key={id.toString()}
+        src={item}
+        alt="id"
+      />
+    ));
+    // const main_photo = (
+    //   <img className="main_photo" src={this.state.chosen_photo} />
+    // );
+
+    return (
+      <div>
+        <div className="heading">
+          <h1>Hi! Insert name and find photos from flickr ap </h1>
+          <form className="form-inline" onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label>
+                Name:
+                <input
+                  type="text"
+                  placeholder="Enter photo's name"
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <input type="submit" value="Submit" />
+            </div>
+          </form>
+        </div>
+        <div className={showClass}>
+          <div className="box">
+            <div className="main_pic">
+              <div className={urls}>{urls}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+export default Groups;

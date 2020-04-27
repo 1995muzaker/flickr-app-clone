@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 import { FaUserFriends, FaImages, FaComments } from "react-icons/fa";
 import { GroupDiv, GroupCard, InnerDetails, ImgDiv } from "../../styles/Groups";
 
@@ -25,7 +26,9 @@ class ViewGroup extends React.Component {
                 />
               </ImgDiv>
               <InnerDetails>
+              <Link to={'/' + grpData.nsid}>
                 <h4>{grpData.name}</h4>
+                </Link>
                 <div>
                   <p>
                     <FaUserFriends />

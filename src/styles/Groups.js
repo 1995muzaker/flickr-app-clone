@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const MainDiv = styled.div`
   width: 100%;
   display: flex;
+  padding: 40px;
+  box-sizing: border-box;
 `;
 
 export const HeaderDiv = styled.div`
@@ -55,8 +57,11 @@ export const GroupDiv = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 70%;
-  margin: 24px;
+  width: 65%;
+
+  @media (max-width: 1400px) {
+    width: 55%;
+  }
 `;
 
 export const GroupCard = styled.div`
@@ -69,6 +74,9 @@ export const GroupCard = styled.div`
   margin-bottom: 15px;
   padding: 10px 10px;
   box-shadow: 0px 0px 5px 2px #c3c3c3;
+  @media (max-width: 1400px) {
+    flex: 0 0 48%;
+  }
   & img {
     border-radius: 50%;
     border-style: double;
@@ -85,6 +93,7 @@ export const GroupCard = styled.div`
     -webkit-box-orient: vertical;
     overflow: hidden;
     margin-bottom: 5px;
+    color: #000;
   }
   & p {
     margin: 0;
@@ -118,5 +127,31 @@ export const InnerDetails = styled.div`
         margin-right: 5px;
       }
     }
+  }
+`;
+
+export const ChartDiv = styled.div`
+  width: 35%;
+  @media (max-width: 1400px) {
+    width: 45%;
+    padding-left: 25px;
+    box-sizing: border-box;
+  }
+`;
+
+export const VisualizationDiv = styled.div`
+  box-sizing: border-box;
+  border-radius: 3px;
+  background-color: #fff;
+  padding: 10px 10px;
+  box-shadow: 0px 0px 5px 2px #c3c3c3;
+  margin-bottom: 20px;
+  & h3 {
+    color: #000;
+    text-align: left;
+    text-transform: capitalize;
+    margin: 0;
+    margin-bottom: 24px;
+    padding-left: 15px;
   }
 `;

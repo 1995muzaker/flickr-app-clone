@@ -1,5 +1,6 @@
 import React from "react";
 import Chart from "react-google-charts";
+import { VisualizationDiv } from "../../styles/Groups";
 
 class BarVisualizations extends React.Component {
   transformChartData = (url) => {
@@ -24,49 +25,52 @@ class BarVisualizations extends React.Component {
   render() {
     if (this.props.url && this.props.url.length >= 1) {
       return (
-        <Chart
-          width={"100%"}
-          height={"400px"}
-          chartType="ComboChart"
-          loader={<div>Loading Chart</div>}
-          data={this.transformChartData(this.props.url)}
-          options={{
-            // Material design options
-            legend: { position: "none" },
-            fontName: "Montserrat",
-            colors: ["#327ff6"],
-            useObjectBoundingBoxUnits: false,
-            chartArea: {
-              left: 50,
-              right: 0,
-              top: 10,
-              bottom: 45,
-            },
-            seriesType: "bars",
-            vAxis: {
-              minValue: 0,
-              format: "short",
-              titleTextStyle: {
-                y: "0",
-                color: "#000",
-                fontName: "Montserrat",
-                fontSize: 11,
-                bold: true,
-                italic: false,
+        <VisualizationDiv>
+          <h3>photo counts of the groups (Bar Chart)</h3>
+          <Chart
+            width={"100%"}
+            height={"400px"}
+            chartType="ComboChart"
+            loader={<div>Loading Chart</div>}
+            data={this.transformChartData(this.props.url)}
+            options={{
+              // Material design options
+              legend: { position: "none" },
+              fontName: "Montserrat",
+              colors: ["#327ff6"],
+              useObjectBoundingBoxUnits: false,
+              chartArea: {
+                left: 50,
+                right: 0,
+                top: 10,
+                bottom: 45,
               },
-            },
-            hAxis: {
-              format: "short",
-            },
-            pieSliceText: "percentage",
-            tooltip: {
-              isHtml: true,
-              pointerEvents: "none",
-            },
-          }}
-          rootProps={{ "data-testid": "2" }}
-          legendToggle
-        />
+              seriesType: "bars",
+              vAxis: {
+                minValue: 0,
+                format: "short",
+                titleTextStyle: {
+                  y: "0",
+                  color: "#000",
+                  fontName: "Montserrat",
+                  fontSize: 11,
+                  bold: true,
+                  italic: false,
+                },
+              },
+              hAxis: {
+                format: "short",
+              },
+              pieSliceText: "percentage",
+              tooltip: {
+                isHtml: true,
+                pointerEvents: "none",
+              },
+            }}
+            rootProps={{ "data-testid": "2" }}
+            legendToggle
+          />
+        </VisualizationDiv>
       );
     } else {
       return null;

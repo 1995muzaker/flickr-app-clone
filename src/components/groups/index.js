@@ -3,7 +3,8 @@ import ViewGroup from "./ViewGroup";
 import axios from "axios";
 import Header from "../header";
 import BarVisualizations from "./BarVisualizations";
-import { MainDiv } from "../../styles/Groups";
+import { MainDiv, ChartDiv } from "../../styles/Groups";
+import PieVisualizations from "./PieVisualizations";
 
 class Groups extends Component {
   state = {
@@ -16,6 +17,7 @@ class Groups extends Component {
       value: event.target.value,
     });
   };
+  
   handleSubmit = (event) => {
     axios
       .get(
@@ -59,7 +61,10 @@ class Groups extends Component {
         />
         <MainDiv>
           <ViewGroup url={this.state.url} />
-          <BarVisualizations url={this.state.url} />
+          <ChartDiv>
+            <BarVisualizations url={this.state.url} />
+            <PieVisualizations url={this.state.url} />
+          </ChartDiv>
         </MainDiv>
       </div>
     );

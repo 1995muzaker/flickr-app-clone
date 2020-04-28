@@ -39,6 +39,7 @@ export const MansoryDiv = styled.div`
       overflow: hidden;
       text-decoration: underline;
       margin-bottom: 5px;
+      word-break: break-all;
     }
     &__author {
       text-transform: capitalize;
@@ -94,12 +95,12 @@ export const MansoryDiv = styled.div`
       & .author-div {
         display: flex;
         align-items: center;
-        & span{
-            text-transform: capitalize;
-      font-size: 12px;
-      font-weight: 500;
-      margin: 0;
-      text-align: left;
+        & span {
+          text-transform: capitalize;
+          font-size: 12px;
+          font-weight: 500;
+          margin: 0;
+          text-align: left;
         }
       }
       & .update p {

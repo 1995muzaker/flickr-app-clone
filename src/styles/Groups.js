@@ -155,3 +155,10 @@ export const VisualizationDiv = styled.div`
     padding-left: 15px;
   }
 `;
+
+export const LoaderDiv = styled.div`
+  height: 450px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

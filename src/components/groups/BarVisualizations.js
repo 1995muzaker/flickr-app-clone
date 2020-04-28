@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from "react-google-charts";
 import { VisualizationDiv } from "../../styles/Groups";
+import NetworkLoader from "../../utilities/Loader";
 
 class BarVisualizations extends React.Component {
   transformChartData = (url) => {
@@ -31,7 +32,7 @@ class BarVisualizations extends React.Component {
             width={"100%"}
             height={"400px"}
             chartType="ComboChart"
-            loader={<div>Loading Chart</div>}
+            loader={<NetworkLoader />}
             data={this.transformChartData(this.props.url)}
             options={{
               // Material design options

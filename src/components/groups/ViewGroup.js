@@ -26,7 +26,7 @@ class ViewGroup extends React.Component {
               <ImgDiv>
                 <ReactImageFallback
                   src={
-                    "https:farm" +
+                    "https://farm" +
                     grpData.iconfarm +
                     ".staticflickr.com/" +
                     grpData.iconserver +

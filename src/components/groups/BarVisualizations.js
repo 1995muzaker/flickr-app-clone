@@ -4,10 +4,10 @@ import { VisualizationDiv } from "../../styles/Groups";
 import NetworkLoader from "../../utilities/Loader";
 
 class BarVisualizations extends React.Component {
-  transformChartData = (url) => {
+  transformChartData = (photos) => {
     const result = [];
 
-    const data = url;
+    const data = photos;
 
     data.map((obj, index) => {
       if (index === 0) {
@@ -24,7 +24,7 @@ class BarVisualizations extends React.Component {
   };
 
   render() {
-    if (this.props.url && this.props.url.length >= 1) {
+    if (this.props.photos && this.props.photos.length >= 1) {
       return (
         <VisualizationDiv>
           <h3>photo counts of the groups (Bar Chart)</h3>
@@ -33,7 +33,7 @@ class BarVisualizations extends React.Component {
             height={"400px"}
             chartType="ComboChart"
             loader={<NetworkLoader />}
-            data={this.transformChartData(this.props.url)}
+            data={this.transformChartData(this.props.photos)}
             options={{
               // Material design options
               legend: { position: "none" },

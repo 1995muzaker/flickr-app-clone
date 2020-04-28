@@ -1,18 +1,30 @@
 import React from "react";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import ReactImageFallback from "react-image-fallback";
 import { FaUserFriends, FaImages, FaComments } from "react-icons/fa";
 import { GroupDiv, GroupCard, InnerDetails, ImgDiv } from "../../styles/Groups";
+import LazyLoader from "../../utilities/LazyLoader";
 
 class ViewGroup extends React.Component {
   render() {
-    const { url } = this.props;
+    const { photos } = this.props;
     return (
       <GroupDiv>
-        {url.map((grpData) => {
+        {this.props.error && (
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="alert alert-danger" role="alert">
+                <p>{this.props.errorMsg}</p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {photos.map((grpData) => {
           return (
             <GroupCard key={grpData.nsid}>
               <ImgDiv>
-                <img
+                <ReactImageFallback
                   src={
                     "https:farm" +
                     grpData.iconfarm +
@@ -22,12 +34,13 @@ class ViewGroup extends React.Component {
                     grpData.nsid +
                     ".jpg"
                   }
-                  alt="img"
+                  fallbackImage="https://combo.staticflickr.com/pw/images/buddyicon02_r.png#1104286@N23"
+                  alt={grpData.name}
                 />
               </ImgDiv>
               <InnerDetails>
-              <Link to={'/' + grpData.nsid}>
-                <h4>{grpData.name}</h4>
+                <Link to={"/" + grpData.nsid}>
+                  <h4>{grpData.name}</h4>
                 </Link>
                 <div>
                   <p>
@@ -47,6 +60,28 @@ class ViewGroup extends React.Component {
             </GroupCard>
           );
         })}
+
+        {this.props.isLoading && (
+          <div class="row" id="loading">
+            <div class="col-xs-12">
+              <div className="hollow-dots-spinner">
+                <div className="dot"></div>
+                <div className="dot"></div>
+                <div className="dot"></div>
+              </div>
+              <LazyLoader />
+            </div>
+          </div>
+        )}
+        {!this.props.hasMore && (
+          <div class="row" id="loading">
+            <div class="col-xs-12">
+              <div class="alert alert-warning" role="alert">
+                <p>NO MORE RESULTS</p>
+              </div>
+            </div>
+          </div>
+        )}
       </GroupDiv>
     );
   }

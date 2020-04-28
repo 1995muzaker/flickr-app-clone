@@ -12,7 +12,7 @@ class BarVisualizations extends React.Component {
     data.map((obj, index) => {
       if (index === 0) {
         const columnKeys = Object.keys(obj);
-        result.push(columnKeys.splice(5, 2));
+        result.push(columnKeys.splice(4, 2));
       }
 
       const dataToAppend = [obj.name, parseInt(obj.pool_count)];

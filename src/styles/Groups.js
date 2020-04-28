@@ -5,6 +5,13 @@ export const MainDiv = styled.div`
   display: flex;
   padding: 40px;
   box-sizing: border-box;
+  flex-wrap: wrap;
+  @media (max-width: 800px) {
+    padding: 15px;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column-reverse;
+  }
 `;
 
 export const HeaderDiv = styled.div`
@@ -15,10 +22,20 @@ export const HeaderDiv = styled.div`
   align-items: center;
   padding: 20px 50px;
   box-sizing: border-box;
+  flex-wrap: wrap;
   & h2 {
     margin: 0;
     font-weight: bold;
     letter-spacing: 1px;
+    @media (max-width: 800px) {
+      margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 800px) {
+    padding: 20px 20px;
+  }
+  @media (max-width: 600px) {
+    justify-content: center;
   }
 `;
 
@@ -57,15 +74,21 @@ export const GroupDiv = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  width: 65%;
+  width: 55%;
 
-  @media (max-width: 1400px) {
-    width: 55%;
+  @media (max-width: 1200px) {
+    width: 65%;
+  }
+  @media (max-width: 800px) {
+    width: 50%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
   }
 `;
 
 export const GroupCard = styled.div`
-  flex: 0 0 32%;
+  flex: 0 0 48%;
   box-sizing: border-box;
   border-radius: 3px;
   background-color: #fff;
@@ -74,8 +97,11 @@ export const GroupCard = styled.div`
   margin-bottom: 15px;
   padding: 10px 10px;
   box-shadow: 0px 0px 5px 2px #c3c3c3;
-  @media (max-width: 1400px) {
-    flex: 0 0 48%;
+  @media (max-width: 1200px) {
+    width: 35%;
+  }
+  @media (max-width: 800px) {
+    flex: 0 0 100%;
   }
   & img {
     border-radius: 50%;
@@ -115,6 +141,7 @@ export const InnerDetails = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-wrap: wrap;
 
     & p {
       margin-right: 10px;
@@ -131,11 +158,20 @@ export const InnerDetails = styled.div`
 `;
 
 export const ChartDiv = styled.div`
-  width: 35%;
-  @media (max-width: 1400px) {
-    width: 45%;
+  width: 45%;
+  padding-left: 25px;
+  box-sizing: border-box;
+  @media (max-width: 1200) {
+    width: 35%;
     padding-left: 25px;
     box-sizing: border-box;
+  }
+  @media (max-width: 800px) {
+    width: 50%;
+  }
+  @media (max-width: 600px) {
+    width: 100%;
+    padding-left: 0px;
   }
 `;
 
@@ -157,7 +193,7 @@ export const VisualizationDiv = styled.div`
 `;
 
 export const LoaderDiv = styled.div`
-  height: 450px;
+  height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;

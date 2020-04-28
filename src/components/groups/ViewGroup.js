@@ -11,12 +11,8 @@ class ViewGroup extends React.Component {
     return (
       <GroupDiv>
         {this.props.error && (
-          <div class="row">
-            <div class="col-xs-12">
-              <div class="alert alert-danger" role="alert">
-                <p>{this.props.errorMsg}</p>
-              </div>
-            </div>
+          <div>
+            <p>{this.props.errorMsg}</p>
           </div>
         )}
 
@@ -61,25 +57,10 @@ class ViewGroup extends React.Component {
           );
         })}
 
-        {this.props.isLoading && (
-          <div class="row" id="loading">
-            <div class="col-xs-12">
-              <div className="hollow-dots-spinner">
-                <div className="dot"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-              </div>
-              <LazyLoader />
-            </div>
-          </div>
-        )}
+        {this.props.isLoading && <LazyLoader />}
         {!this.props.hasMore && (
-          <div class="row" id="loading">
-            <div class="col-xs-12">
-              <div class="alert alert-warning" role="alert">
-                <p>NO MORE RESULTS</p>
-              </div>
-            </div>
+          <div>
+            <p>NO MORE RESULTS</p>
           </div>
         )}
       </GroupDiv>

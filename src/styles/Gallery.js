@@ -10,6 +10,10 @@ export const MansoryDiv = styled.div`
   @media (max-width: 992px) {
     columns: 2;
   }
+  @media (max-width: 600px) {
+    columns: 1;
+    padding: 15px;
+  }
   .grid {
     display: inline-block;
     margin-bottom: 16px;
@@ -113,10 +117,8 @@ export const MansoryDiv = styled.div`
   }
 `;
 
-export const InfiniteLoad = styled.div`
-  width: 100%;
-`;
-
 export const SyncLoaderDiv = styled.div`
+  width: 100%;
   height: 100%;
+  margin-bottom: 25px;
 `;

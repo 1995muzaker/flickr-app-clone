@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { MansoryDiv, InfiniteLoad } from "../../styles/Gallery";
+import { MansoryDiv, SyncLoaderDiv } from "../../styles/Gallery";
 import NetworkLoader from "../../utilities/Loader";
 import LazyLoader from "../../utilities/LazyLoader";
 
@@ -113,11 +113,11 @@ class Gallery extends Component {
       return (
         <div>
           {this.state.error && (
-            <InfiniteLoad>
-              <div class="alert alert-danger" role="alert">
+            <SyncLoaderDiv>
+              <div>
                 <p>{this.state.errorMsg}</p>
               </div>
-            </InfiniteLoad>
+            </SyncLoaderDiv>
           )}
           <MansoryDiv>
             {this.state.photos.map((grpData) => {
@@ -155,16 +155,16 @@ class Gallery extends Component {
             })}
           </MansoryDiv>
           {this.state.isLoading && (
-            <InfiniteLoad>
+            <SyncLoaderDiv>
               <LazyLoader />
-            </InfiniteLoad>
+            </SyncLoaderDiv>
           )}
           {!this.state.hasMore && (
-            <InfiniteLoad>
-              <div class="alert alert-warning" role="alert">
+            <SyncLoaderDiv>
+              <div>
                 <p>NO MORE RESULTS</p>
               </div>
-            </InfiniteLoad>
+            </SyncLoaderDiv>
           )}
         </div>
       );

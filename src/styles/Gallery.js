@@ -112,3 +112,11 @@ export const MansoryDiv = styled.div`
     }
   }
 `;
+
+export const InfiniteLoad = styled.div`
+  width: 100%;
+`;
+
+export const SyncLoaderDiv = styled.div`
+  height: 100%;
+`;

@@ -7,7 +7,7 @@
 ```
 $ yarn install
 ```
-### To start your application run:
+### 2.To start your application run:
 
 ```
 $ yarn start

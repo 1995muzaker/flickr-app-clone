@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ReactImageFallback from "react-image-fallback";
 import { FaUserFriends, FaImages, FaComments } from "react-icons/fa";
-import { GroupDiv, GroupCard, InnerDetails, ImgDiv } from "../../styles/Groups";
+import { GroupDiv, InnerDetails, ImgDiv } from "../../styles/Groups";
 import LazyLoader from "../../utilities/LazyLoader";
 
 const ViewGroup = ({ photos, error, errorMsg, isLoading, hasMore }) => {
@@ -16,7 +16,7 @@ const ViewGroup = ({ photos, error, errorMsg, isLoading, hasMore }) => {
 
       {photos.map((grpData) => {
         return (
-          <GroupCard key={grpData.nsid}>
+          <Link to={"/" + grpData.nsid} key={grpData.nsid}>
             <ImgDiv>
               <ReactImageFallback
                 src={
@@ -33,9 +33,7 @@ const ViewGroup = ({ photos, error, errorMsg, isLoading, hasMore }) => {
               />
             </ImgDiv>
             <InnerDetails>
-              <Link to={"/" + grpData.nsid}>
-                <h4>{grpData.name}</h4>
-              </Link>
+              <h4>{grpData.name}</h4>
               <div>
                 <p>
                   <FaUserFriends />
@@ -51,7 +49,7 @@ const ViewGroup = ({ photos, error, errorMsg, isLoading, hasMore }) => {
                 </p>
               </div>
             </InnerDetails>
-          </GroupCard>
+          </Link>
         );
       })}
 

@@ -19,7 +19,6 @@ const PieVisualizations = ({ photos }) => {
 
       return result.push(dataToAppend);
     });
-    console.log(result);
     return result;
   };
   if (photos && photos.length >= 1) {

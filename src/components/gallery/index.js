@@ -104,7 +104,7 @@ class Gallery extends Component {
             server: photo.server,
             secret: photo.secret,
           }));
-          
+
           // store the data response
           this.setState({
             hasMore: hasMore,
@@ -122,12 +122,12 @@ class Gallery extends Component {
       return (
         <div>
           <NavigateButton>
-            <button>
-              <Link to={"/"}>
+            <Link to={"/"}>
+              <button>
                 <FaArrowLeft />
                 Back to Groups
-              </Link>
-            </button>
+              </button>
+            </Link>
           </NavigateButton>
           {this.state.error && (
             <SyncLoaderDiv>

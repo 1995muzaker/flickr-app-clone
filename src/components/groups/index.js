@@ -87,12 +87,12 @@ class Groups extends Component {
           let hasMore = true;
           let isError = false;
           let errorMsg = "";
-          //  no data respnse will fail
+          // checks if no data response will fail
           if (res.data.stat === "fail") {
             isError = true;
             errorMsg = res.data.message;
           }
-          // check the data response
+          // render data onScroll for infinte scrolling
           const groupData = res.data.groups.group;
           if (groupData.pages === this.state.currentPage) {
             hasMore = false;
@@ -111,6 +111,7 @@ class Groups extends Component {
             pool_count: photo.pool_count,
             topic_count: photo.topic_count,
           }));
+          
           // store the data response
           this.setState({
             hasMore: hasMore,

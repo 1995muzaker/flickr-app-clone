@@ -41,13 +41,14 @@ export const HeaderDiv = styled.div`
 `;
 
 export const IntroDiv = styled.div`
-  height: 393px;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   & h1 {
     font-size: 50px;
+    margin: 0px;
   }
 
   & h3 {
@@ -92,7 +93,6 @@ export const GroupDiv = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   width: 55%;
-
   @media (max-width: 1200px) {
     width: 65%;
   }
@@ -102,44 +102,44 @@ export const GroupDiv = styled.div`
   @media (max-width: 600px) {
     width: 100%;
   }
-`;
-
-export const GroupCard = styled.div`
-  flex: 0 0 48%;
-  box-sizing: border-box;
-  border-radius: 3px;
-  background-color: #fff;
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  padding: 10px 10px;
-  box-shadow: 0px 0px 5px 2px #c3c3c3;
-  @media (max-width: 1200px) {
-    width: 35%;
-  }
-  @media (max-width: 800px) {
-    flex: 0 0 100%;
-  }
-  & img {
-    border-radius: 50%;
-    border-style: double;
-    width: 60px;
-    object-fit: contain;
-    padding: 1px;
-  }
-  & h4 {
-    margin: 0;
-    font-size: 12pt;
-    font-weight: 600;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin-bottom: 5px;
-    color: #000;
-  }
-  & p {
-    margin: 0;
+  & a {
+    flex: 0 0 48%;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px 10px;
+    box-shadow: 0px 0px 5px 2px #c3c3c3;
+    text-decoration: none;
+    @media (max-width: 1200px) {
+      width: 35%;
+    }
+    @media (max-width: 800px) {
+      flex: 0 0 100%;
+    }
+    & img {
+      border-radius: 50%;
+      border-style: double;
+      width: 60px;
+      object-fit: contain;
+      padding: 1px;
+    }
+    & h4 {
+      margin: 0;
+      font-size: 12pt;
+      font-weight: 600;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 5px;
+      color: #000;
+    }
+    & p {
+      margin: 0;
+    }
   }
 `;
 
@@ -216,7 +216,7 @@ export const VisualizationDiv = styled.div`
 `;
 
 export const LoaderDiv = styled.div`
-  height: 600px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;

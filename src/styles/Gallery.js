@@ -5,21 +5,21 @@ export const NavigateButton = styled.div`
   text-align: left;
   box-sizing: border-box;
   padding: 40px 40px 0px;
-  & button {
-    color: #fff;
-    background: #151517f2;
-    border: 0;
-    padding: 10px 20px;
-    font-size: 18px;
-    font-family: "Montserrat";
-    font-weight: 500;
-    border-radius: 5px;
-    cursor: pointer;
-    & a {
+  & a {
+    text-decoration: none;
+    & button {
       color: #fff;
+      background: #151517f2;
+      border: 0;
+      padding: 10px 20px;
+      font-size: 18px;
+      font-family: "Montserrat";
+      font-weight: 500;
+      border-radius: 5px;
       display: flex;
       align-items: center;
-      text-decoration: none;
+      cursor: pointer;
+
       & svg {
         margin-right: 10px;
       }

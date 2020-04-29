@@ -97,7 +97,7 @@ class Groups extends Component {
           if (groupData.pages === this.state.currentPage) {
             hasMore = false;
           }
-          if (groupData.total === "0" || undefined) {
+          if (groupData.total === "0") {
             isError = true;
             errorMsg = "No Photos found";
           }

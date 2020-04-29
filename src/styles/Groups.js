@@ -113,6 +113,7 @@ export const GroupDiv = styled.div`
     padding: 10px 10px;
     box-shadow: 0px 0px 5px 2px #c3c3c3;
     text-decoration: none;
+    color: #000;
     @media (max-width: 1200px) {
       width: 35%;
     }

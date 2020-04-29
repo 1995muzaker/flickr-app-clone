@@ -6,6 +6,7 @@ export const MainDiv = styled.div`
   padding: 40px;
   box-sizing: border-box;
   flex-wrap: wrap;
+  align-items: flex-start;
   @media (max-width: 800px) {
     padding: 15px;
   }
@@ -34,8 +35,24 @@ export const HeaderDiv = styled.div`
   @media (max-width: 800px) {
     padding: 20px 20px;
   }
-  @media (max-width: 600px) {
+  @media (max-width: 450px) {
     justify-content: center;
+  }
+`;
+
+export const IntroDiv = styled.div`
+  height: 393px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  & h1 {
+    font-size: 50px;
+  }
+
+  & h3 {
+    font-size: 30px;
+    line-height: 40px;
   }
 `;
 
@@ -161,6 +178,9 @@ export const ChartDiv = styled.div`
   width: 45%;
   padding-left: 25px;
   box-sizing: border-box;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 25px;
   @media (max-width: 1200) {
     width: 35%;
     padding-left: 25px;
@@ -172,6 +192,9 @@ export const ChartDiv = styled.div`
   @media (max-width: 600px) {
     width: 100%;
     padding-left: 0px;
+    position: -webkit-static;
+    position: static;
+    top: 0;
   }
 `;
 

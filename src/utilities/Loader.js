@@ -21,7 +21,7 @@ class NetworkLoader extends React.Component {
         <BounceLoader
           css={override}
           size={90}
-          color={"#128fdc"}
+          color={"#151517f2"}
           loading={this.state.loading}
         />
       </LoaderDiv>

@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 import { Route, BrowserRouter } from 'react-router-dom'
-// import Flickr from "./components";
 import Groups from "./components/groups";
 import Gallery from "./components/gallery";
 

@@ -1,20 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { MansoryDiv, SyncLoaderDiv } from "../../styles/Gallery";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { LayoutDiv, SyncLoaderDiv, NavigateButton } from "../../styles/Gallery";
 import NetworkLoader from "../../utilities/Loader";
 import LazyLoader from "../../utilities/LazyLoader";
 
 class Gallery extends Component {
-  constructor() {
-    super();
-    this.state = {
-      error: false,
-      errorMsg: "",
-      hasMore: true,
-      isLoading: false,
-      photos: [],
-      currentPage: 0,
-    };
+  state = {
+    // to check error status
+    error: false,
+    // if api.length < 1 errorMsg state will render
+    errorMsg: "",
+    // state to render for infinite scrolling
+    hasMore: true,
+    // state for network loading
+    isLoading: false,
+    // state to diplay placeholder message
+    emptyData: true,
+    // state to store data
+    photos: [],
+    // state to render number of pages
+    currentPage: 0,
+  };
+
+  componentDidMount() {
+    // function for infinite scroll
     window.onscroll = () => {
       const {
         loadImg,
@@ -28,14 +39,11 @@ class Gallery extends Component {
         loadImg();
       }
     };
-  }
-
-  componentDidMount() {
     this.handleData();
   }
 
+  // funtion which stores the search value
   handleData() {
-    // console.log('Form value: ' + this.state.searchTerm);
     this.setState({
       currentPage: 1,
       photos: [],
@@ -43,15 +51,19 @@ class Gallery extends Component {
     this.loadImg();
   }
 
+  // render group getphoto data on DOM render
   loadImg = () => {
+    // add the Currentpage on each scroll
     this.setState({ currentPage: this.state.currentPage + 1 });
+
+    // defines the route id to navigate
     let id = this.props.match.params.post_id;
 
+    // handling data response
     this.setState({ isLoading: true }, () => {
       axios
         .get(
-          // "https://api.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&api_key=abb6b76e3ebf3f6f084ac52590164c7c",
-          "https://www.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&api_key=bb8bdb0456894e52d09584f7c07d29c7",
+          "https://www.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&api_key=90e78b3a04cf9f2321ecbeda297fc2b0",
           {
             params: {
               group_id: id,
@@ -65,24 +77,20 @@ class Gallery extends Component {
           }
         )
         .then((res) => {
-          console.log(res);
-          //   this.setState({
-          //     photos: res.data.photos.photo,
-          //   });
           let hasMore = true;
           let isError = false;
           let errorMsg = "";
           if (res.data.stat === "fail") {
             isError = true;
             errorMsg = res.data.message;
-            console.log("Should be FAIL");
           }
           const photoBatch = res.data.photos.photo;
-          console.log(photoBatch);
+
+          // render data onScroll for infinte scrolling
           if (photoBatch.pages === this.state.currentPage) {
             hasMore = false;
           }
-          console.log("photos Found: ", photoBatch.total);
+
           if (photoBatch.total === "0") {
             isError = true;
             errorMsg = "No Photos found";
@@ -96,7 +104,8 @@ class Gallery extends Component {
             server: photo.server,
             secret: photo.secret,
           }));
-
+          
+          // store the data response
           this.setState({
             hasMore: hasMore,
             error: isError,
@@ -112,6 +121,14 @@ class Gallery extends Component {
     if (this.state.photos && this.state.photos.length >= 1) {
       return (
         <div>
+          <NavigateButton>
+            <button>
+              <Link to={"/"}>
+                <FaArrowLeft />
+                Back to Groups
+              </Link>
+            </button>
+          </NavigateButton>
           {this.state.error && (
             <SyncLoaderDiv>
               <div>
@@ -119,7 +136,7 @@ class Gallery extends Component {
               </div>
             </SyncLoaderDiv>
           )}
-          <MansoryDiv>
+          <LayoutDiv>
             {this.state.photos.map((grpData) => {
               return (
                 <div className="grid" key={grpData.id}>
@@ -153,7 +170,7 @@ class Gallery extends Component {
                 </div>
               );
             })}
-          </MansoryDiv>
+          </LayoutDiv>
           {this.state.isLoading && (
             <SyncLoaderDiv>
               <LazyLoader />

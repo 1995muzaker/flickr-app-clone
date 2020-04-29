@@ -21,7 +21,7 @@ class LazyLoader extends React.Component {
         <SyncLoader
           css={override}
           size={15}
-          color={"#128fdc"}
+          color={"#151517f2"}
           loading={this.state.loading}
         />
       </SyncLoaderDiv>

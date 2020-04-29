@@ -1,9 +1,36 @@
 import styled from "styled-components";
 
-export const MansoryDiv = styled.div`
+export const NavigateButton = styled.div`
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  padding: 40px 40px 0px;
+  & button {
+    color: #fff;
+    background: #151517f2;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: "Montserrat";
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+    & a {
+      color: #fff;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      & svg {
+        margin-right: 10px;
+      }
+    }
+  }
+`;
+
+export const LayoutDiv = styled.div`
   columns: 4;
   column-gap: 16px;
-  padding: 50px;
+  padding: 40px;
   @media (max-width: 1200px) {
     columns: 3;
   }
